@@ -33,7 +33,7 @@ class UserController extends Controller
     {
         //
         $user = User::create($request->all()); // Guardar usuario en la base de datos
-        return redirect('editar.usuario', $user->id);
+        return redirect()->route('editar.usuario', ['id' => $user->id]); // Redirijir a la ruta de editar usuario pasandole el id por parametro
     }
 
     /**
@@ -50,6 +50,9 @@ class UserController extends Controller
     public function edit(string $id)
     {
         //
+        // dd($id);
+        $user = User::where('id', $id)->first();
+        return view('editar', compact('user'));
     }
 
     /**
@@ -58,6 +61,10 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $user = User::where('id', $id)->first();
+        $user->name = $request->name;
+
+        $user->save();
     }
 
     /**
