@@ -12,3 +12,5 @@ Route::get('/usuario', function(){
 });
 
 Route::post('/usuario', [UserController::class, 'store'])->name('usuario'); // Vincular ruta de tipo POST con un controlodar y a su vez 
+
+Route::get('/editar/{id}', [UserController::class, 'edit'])->name('editar.usuario');

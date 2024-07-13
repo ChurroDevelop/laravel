@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Cache\RedisTagSet;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 
 class UserController extends Controller
 {
@@ -31,8 +32,8 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         //
-        $user = User::create($request->all());
-        dd($user);
+        $user = User::create($request->all()); // Guardar usuario en la base de datos
+        return redirect('editar.usuario', $user->id);
     }
 
     /**
